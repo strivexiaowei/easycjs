@@ -77,11 +77,13 @@ const deepClone = function(target, map = new WeakMap()) {
 
 // 数据扁平化
 const flatten = function(arr) {
-  let res = [];
+  let res = []
+  let d = 0
+  ++d
   arr.forEach((item, index) => {
-    Array.isArray(item) ? res = res.concat(flatten(item)) : res.push(item);
-  });
-  return res;
+      (Array.isArray(item) && d <= depth) ? res = res.concat(flatten(item)) : res.push(item)
+  })
+  return res
 }
 export {
   formatDate,
