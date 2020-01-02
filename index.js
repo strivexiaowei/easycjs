@@ -1,3 +1,4 @@
+// 时间格式转换
 const formatDate = function (oldDate, fmt) {
   let date = new Date()
   if (typeof oldDate === 'string' || typeof oldDate === 'number') {
@@ -28,7 +29,7 @@ const formatDate = function (oldDate, fmt) {
   }
   return fmt
 }
-
+// 数字转汉字
 const formatNum = function(num) {
   if (isNaN(num)) {
     return null;
@@ -54,7 +55,27 @@ const formatNum = function(num) {
   });
  return numStr
 }
+
+// 深拷贝
+const deepClone = function(target, map = new WeakMap()) {
+  if (typeof target === 'object') {
+      let cloneTarget = Array.isArray(target) ? [] : {};
+      if (map.get(target)) {
+          return map.get(target);
+      }
+      map.set(target, cloneTarget);
+      for (const key in target) {
+          if (target.hasOwnProperty(key)) {
+              cloneTarget[key] = deepClone(target[key], map);
+          }
+      }
+      return cloneTarget;
+  } else {
+      return target;
+  }
+}
 export {
   formatDate,
-  formatNum
+  formatNum,
+  deepClone
 };
