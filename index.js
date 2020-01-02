@@ -74,6 +74,15 @@ const deepClone = function(target, map = new WeakMap()) {
       return target;
   }
 }
+
+// 数据扁平化
+const flatten = function(arr) {
+  let res = [];
+  arr.forEach((item, index) => {
+    Array.isArray(item) ? res = res.concat(flatten(item)) : res.push(item);
+  });
+  return res;
+}
 export {
   formatDate,
   formatNum,
