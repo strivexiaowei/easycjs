@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-01-14 13:30:51
+ * @LastEditTime: 2021-01-14 13:31:38
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \easycjs\index.js
+ */
 // 时间格式转换
 const formatDate = function (oldDate, fmt) {
   let date = new Date()
@@ -23,7 +31,6 @@ const formatDate = function (oldDate, fmt) {
   for (let k in o) {
     if (new RegExp(`(${k})`).test(fmt)) {
       let str = o[k] + ''
-      console.log(RegExp.$1.length);
       fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str))
     }
   }
@@ -88,5 +95,6 @@ const flatten = function(arr) {
 export {
   formatDate,
   formatNum,
-  deepClone
+  deepClone,
+  flatten
 };
